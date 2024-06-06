@@ -36,7 +36,7 @@ export default function Home() {
         const response = await shortenUrl(values);
         showToast('success', response.data.message);
         setIsShortened(true);
-        setShortenedUrl(`http://localhost:4000/${response.data.data.shortenUrl.shortUrl}`)
+        setShortenedUrl(`https://url-shortner-fsd.onrender.com/${response.data.data.shortenUrl.shortUrl}`)
         setLoading(false);
       }
       catch (err) {

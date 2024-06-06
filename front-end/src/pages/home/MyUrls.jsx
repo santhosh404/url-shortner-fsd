@@ -52,7 +52,7 @@ export default function MyUrls() {
     }, [page, rowsPerPage])
 
     const handleCopy = (short) => {
-        navigator.clipboard.writeText(`http://localhost:4000/${short}`);
+        navigator.clipboard.writeText(`https://url-shortner-fsd.onrender.com/${short}`);
         showToast('success', 'Url copied to clipboard');
     }
     return (
@@ -99,7 +99,7 @@ export default function MyUrls() {
                                     >
                                         <TableCell align="left" sx={{
                                             width: '350px'
-                                        }}>http://localhost:4000/{row.shortUrl}</TableCell>
+                                        }}>https://url-shortner-fsd.onrender.com/{row.shortUrl}</TableCell>
                                         <TableCell align="left" sx={{
                                             width: '400px'
                                         }}>
