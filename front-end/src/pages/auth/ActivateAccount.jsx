@@ -37,7 +37,9 @@ export default function ActivateAccount() {
         <Container maxWidth='sm' className='mt-20'>
             {
                 isLoading ? (
-                    <CircularProgress />
+                    <div className='flex justify-center items-center'>
+                        <CircularProgress />
+                    </div>
                 ) : <Card className='p-10'>
                     <div className='flex flex-col justify-center items-center gap-2'>
                         <img src={isAccountActivated ? verified : error} alt='activate-img' className='h-10 w-10' />
