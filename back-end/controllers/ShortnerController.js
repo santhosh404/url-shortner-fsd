@@ -23,7 +23,7 @@ const shortenUrl = async (req, res) => {
                 message: "Duplicate URL Error!",
                 data: {
                     error: "The URL already exists for this user.",
-                    existingUrl: existingUrl.shortUrl 
+                    existingUrl: existingUrl.shortUrl
                 }
             });
         }
@@ -73,7 +73,12 @@ const getUrl = async (req, res) => {
                 }
             });
         }
-        await Url.findOneAndUpdate({ shortUrl: shortId }, { $inc: { 'clicks': 1 } }, { new: true });
+        // Update the click count and fetch the updated document
+        const response = await Url.findOneAndUpdate(
+            { shortUrl: shortId },
+            { $inc: { clicks: 1 } },
+            { new: true }
+        );
         res.redirect(url.url);
     }
     catch (err) {
@@ -103,9 +108,9 @@ const myUrls = async (req, res) => {
             });
         }
         const urls = await Url.find({ userId: req.user._id })
-            .populate('userId')
             .skip((page - 1) * rowsPerPage)
             .limit(rowsPerPage);
+
         const urlsCount = await Url.find({ userId: req.user._id })
         return res.status(200).json({
             status: "Success",

@@ -4,7 +4,7 @@ const BASE_URL = "https://url-shortner-fsd.onrender.com/api/v1";
 
 export const shortenUrl = async (payload) => {
     try {
-        const response = await axios.post(`${BASE_URL}/url//shorten`, { ...payload }, {
+        const response = await axios.post(`${BASE_URL}/url/shorten`, { ...payload }, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

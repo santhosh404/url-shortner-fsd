@@ -6,12 +6,14 @@ import { connectDatabase } from './database/config.js';
 import { UserRouter } from './routers/UserRouter.js';
 import { ShortnerRouter } from './routers/ShortnerRouter.js';
 import { ShortRouter } from './routers/ShortRouter.js';
+import morgan from 'morgan';
 dotenv.config()
 
 //Initialize the application
 const app = express();
 
 //Initialize the middlewares
+app.use(morgan('dev'))
 app.use(cors());
 app.use(express.json());
 
