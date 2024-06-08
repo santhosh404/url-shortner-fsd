@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar'
-import { Container, TableFooter, TablePagination, Tooltip } from '@mui/material'
+import { CircularProgress, Container, TableFooter, TablePagination, Tooltip } from '@mui/material'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -21,6 +21,7 @@ export default function MyUrls() {
         data: [],
         count: 0
     });
+    const [loading, setLoading] = useState(false);
 
     const { Toast, showToast } = useToast();
 
@@ -36,13 +37,16 @@ export default function MyUrls() {
 
     //Getting user urls
     const getUserUrls = async () => {
+        setLoading(true);
         try {
             const response = await getMyUrls(page + 1, rowsPerPage);
             if (response) {
                 setUrls({ count: response.data.data.totalCount, data: response.data.data.urls });
+                setLoading(false);
             }
         }
         catch (err) {
+            setLoading(false);
             showToast('error', err.message);
         }
     }
@@ -85,11 +89,11 @@ export default function MyUrls() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {urls.data.length === 0 ? (
+                            {loading ? <TableRow colSpan={4}> <TableCell align="center" colSpan={4}><CircularProgress /></TableCell></TableRow> : urls.data.length === 0 ? (
                                 <TableRow
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center" colSpan={4}>No Records Exists</TableCell>
+                                    
 
                                 </TableRow>
                             ) :

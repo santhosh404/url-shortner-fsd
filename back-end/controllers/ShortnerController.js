@@ -74,10 +74,9 @@ const getUrl = async (req, res) => {
             });
         }
         // Update the click count and fetch the updated document
-        const response = await Url.findOneAndUpdate(
+        const response = await Url.updateOne(
             { shortUrl: shortId },
-            { $inc: { clicks: 1 } },
-            { new: true }
+            { $inc: { clicks: 1 } }
         );
         res.redirect(url.url);
     }
@@ -108,8 +107,9 @@ const myUrls = async (req, res) => {
             });
         }
         const urls = await Url.find({ userId: req.user._id })
+            .sort({ date: -1 })
             .skip((page - 1) * rowsPerPage)
-            .limit(rowsPerPage);
+            .limit(rowsPerPage)
 
         const urlsCount = await Url.find({ userId: req.user._id })
         return res.status(200).json({
