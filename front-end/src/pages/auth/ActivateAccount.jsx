@@ -47,7 +47,7 @@ export default function ActivateAccount() {
                             <h1 className='text-[30px] font-[700]'>Your account has been activated</h1>
                             <p>Yeehhh!, Your account has been successfully activated. Your now verified user in our site. Now you can login to your account with your credentials and Enjoy shortening your url</p>
                         </div> : <div className='flex flex-col justify-center items-center gap-3'>
-                            <h1 className='text-[30px] font-[700]'>Your account is not activated</h1>
+                            <h1 className='text-[30px] font-[700]'>Problem in activating your account!</h1>
                             <p>There is some error in activating your account. Please look into it below and take actions based on that. If the error still persists register with different email id</p>
                         </div>}
 
