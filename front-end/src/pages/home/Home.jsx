@@ -17,7 +17,7 @@ export default function Home() {
   const [shortenedUrl, setShortenedUrl] = useState();
   const { showToast, Toast } = useToast()
 
-  const { setUserDetails } = useMain();
+  const { getUserDetails } = useMain();
 
   const urlRegex = /\b(?:(?:https?|ftp):\/\/|www\.)[-a-zA-Z0-9+&@#\/%?=~_|!:,.;]*\.[a-zA-Z]{1,}[-a-zA-Z0-9+&@#\/%=~_|]/
   const urlValidation = Yup.object().shape({
@@ -52,18 +52,6 @@ export default function Home() {
     showToast('success', 'Url copied to clipboard');
   }
 
-  //Getting user Details
-  const getUserDetails = async () => {
-    try {
-      const response = await getUser();
-      if (response) {
-        setUserDetails(response.data.data.user);
-      }
-    }
-    catch (err) {
-      showToast('error', err.message);
-    }
-  }
 
   useEffect(() => {
     getUserDetails()

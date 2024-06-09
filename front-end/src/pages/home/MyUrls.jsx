@@ -89,12 +89,13 @@ export default function MyUrls() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {loading ? <TableRow colSpan={4}> <TableCell align="center" colSpan={4}><CircularProgress /></TableCell></TableRow> : urls.data.length === 0 ? (
+                            {loading && <TableRow colSpan={4}> <TableCell align="center" colSpan={4}><CircularProgress /></TableCell></TableRow> } { (!loading && urls.data.length === 0) ? (
                                 <TableRow
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    
-
+                                    <TableCell align="center" colSpan={4} >
+                                        No Records Exists
+                                    </TableCell>
                                 </TableRow>
                             ) :
                                 urls.data.map((row) => (

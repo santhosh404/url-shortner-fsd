@@ -33,7 +33,7 @@ export default function Signin() {
         showToast("success", "Login Success!");
         localStorage.setItem('token', response.data.data.token)
         signInFormik.resetForm()
-        navigate('/home')
+        navigate('/user/home')
       }
       catch (err) {
         showToast('error', err?.response?.data?.data?.error || err.message);

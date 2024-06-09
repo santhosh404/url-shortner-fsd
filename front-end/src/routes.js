@@ -4,6 +4,7 @@ import ResetPassword from "./pages/auth/ResetPassword"
 import Signin from "./pages/auth/Signin"
 import Signup from "./pages/auth/Signup"
 import Home from "./pages/home/Home"
+import MyProfile from "./pages/home/MyProfile"
 import MyUrls from "./pages/home/MyUrls"
 
 const routes = [
@@ -31,12 +32,16 @@ const routes = [
 
 const authProtected = [
     {
-        path: '/home',
+        path: '/user/home',
         element: Home
     },
     {
-        path: '/my-urls',
+        path: '/user/my-urls',
         element: MyUrls
+    },
+    {
+        path: '/user/my-profile',
+        element: MyProfile
     }
 ]
 

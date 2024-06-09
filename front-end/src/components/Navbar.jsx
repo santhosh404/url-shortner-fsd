@@ -1,6 +1,6 @@
 import { Avatar, Divider, Menu, MenuItem } from '@mui/material';
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useMain } from '../context/MainContext';
 
 export default function Navbar() {
@@ -20,11 +20,13 @@ export default function Navbar() {
         localStorage.removeItem('token');
         window.location.reload();
     }
+
+    const navigate = useNavigate()
     return (
         <>
             <div className='border-b-2 p-3'>
                 <div className='flex justify-between items-center'>
-                    <Link className='text-[40px] font-[900]' to={'/home'}>ShortIt!</Link>
+                    <Link className='text-[40px] font-[900]' to={'/user/home'}>ShortIt!</Link>
                     <div className='flex gap-5'>
                         <NavLink style={({ isActive }) => {
                             return {
@@ -33,7 +35,7 @@ export default function Navbar() {
                                 color: isActive && "#1565c0",
                                 padding: "8px"
                             };
-                        }} to={"/home"}>Home</NavLink>
+                        }} to={"/user/home"}>Home</NavLink>
                         <NavLink style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
@@ -41,7 +43,7 @@ export default function Navbar() {
                                 color: isActive && "#1565c0",
                                 padding: "8px"
                             };
-                        }} to={"/my-urls"}>My Urls</NavLink>
+                        }} to={"/user/my-urls"}>My Urls</NavLink>
                     </div>
                     <Avatar sx={{ bgcolor: '#1565c0' }} onClick={handleClick} className='cursor-pointer'>{`${userDetails?.first_name?.charAt(0)}${userDetails?.last_name?.charAt(0)}`}</Avatar>
                     <Menu
@@ -58,7 +60,7 @@ export default function Navbar() {
                             <small className='italic'>@{`${userDetails?.first_name} ${userDetails?.last_name}`}</small>
                         </div>
                         <Divider />
-                        <MenuItem onClick={handleClose}>My Profile</MenuItem>
+                        <MenuItem onClick={() => navigate('/user/my-profile')}>My Profile</MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                 </div>
