@@ -77,4 +77,6 @@ const deleteUser = async (req, res) => {
     })
 }
 
+
+
 export { userDetails, updateUser, deleteUser }

@@ -133,6 +133,32 @@ const myUrls = async (req, res) => {
 }
 
 
+const getUrlDetails = async (req, res) => {
+
+    const today = new Date();
+    const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+    const todayUrls = await Url.find({
+        userId: req.user._id,
+        date: { $gte: startOfDay }
+    });
+
+    const currentMonthUrls = await Url.find({
+        userId: req.user._id,
+        date: { $gte: startOfMonth, $lte: endOfMonth }
+    });
+    return res.status(200).json({
+        status: "Success",
+        message: "Get Url Success!",
+        data: {
+            todayUrls: todayUrls.length,
+            currentMonthUrls: currentMonthUrls.length
+        }
+    })
+}
 
 
-export { shortenUrl, getUrl, myUrls }
+
+export { shortenUrl, getUrl, myUrls, getUrlDetails }
