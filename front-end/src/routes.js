@@ -6,6 +6,7 @@ import Signup from "./pages/auth/Signup"
 import Home from "./pages/home/Home"
 import MyProfile from "./pages/home/MyProfile"
 import MyUrls from "./pages/home/MyUrls"
+import ShortenUrl from "./pages/home/ShortenUrl"
 
 const routes = [
     { 
@@ -34,6 +35,10 @@ const authProtected = [
     {
         path: '/user/home',
         element: Home
+    },
+    {
+        path: '/user/shorten-url',
+        element: ShortenUrl
     },
     {
         path: '/user/my-urls',

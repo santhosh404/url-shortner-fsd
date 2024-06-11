@@ -149,10 +149,15 @@ const getUrlDetails = async (req, res) => {
         userId: req.user._id,
         date: { $gte: startOfMonth, $lte: endOfMonth }
     });
+
+    const totalUrls = await Url.find({
+        userId: req.user._id,
+    })
     return res.status(200).json({
         status: "Success",
         message: "Get Url Success!",
         data: {
+            totalUrls: totalUrls.length,
             todayUrls: todayUrls.length,
             currentMonthUrls: currentMonthUrls.length
         }

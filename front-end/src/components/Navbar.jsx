@@ -25,9 +25,9 @@ export default function Navbar() {
     return (
         <>
             <div className='border-b-2 p-3'>
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-between items-center flex-wrap'>
                     <Link className='text-[40px] font-[900]' to={'/user/home'}>ShortIt!</Link>
-                    <div className='flex gap-5'>
+                    <div className='flex flex-wrap gap-5'>
                         <NavLink style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
@@ -36,6 +36,14 @@ export default function Navbar() {
                                 padding: "8px"
                             };
                         }} to={"/user/home"}>Home</NavLink>
+                        <NavLink style={({ isActive }) => {
+                            return {
+                                fontWeight: isActive ? "bold" : "",
+                                borderBottom: isActive && "3px solid #1565c0",
+                                color: isActive && "#1565c0",
+                                padding: "8px"
+                            };
+                        }} to={"/user/shorten-url"}>Shorten Url</NavLink>
                         <NavLink style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? "bold" : "",
